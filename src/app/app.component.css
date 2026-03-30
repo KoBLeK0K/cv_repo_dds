@@ -1,0 +1,132 @@
+/* --- Общие стили --- */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  color: #333;
+  background: linear-gradient(180deg, #f9f5ef 0%, #fdfaf6 100%);
+  background-image: radial-gradient(rgba(240,235,225,0.08) 1px, transparent 1px);
+  background-size: 40px 40px; /* паттерн низкой частоты */
+}
+
+a {
+  color: #7b4f2b; /* насыщенный деревянный акцент */
+}
+
+a:hover {
+  color: #a06633;
+}
+
+/* --- Хедер --- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(180deg, rgba(255,248,240,0.95), rgba(255,248,240,0.85));
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* --- Структура страницы --- */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 6rem 0 0 0; /* верхний padding под хедер */
+}
+
+/* --- Hero секция --- */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 40px;
+}
+
+.hero img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  border: 4px solid #b18643;
+}
+
+/* --- Секции --- */
+section {
+  width: 90%;
+  max-width: 800px;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #fff8f0, #f6f2eb);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: 
+    transform 0.9s cubic-bezier(0.4,0,0.2,1), 
+    opacity 0.9s ease-in-out,
+    box-shadow 0.5s ease-in-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+section:hover {
+  transform: scale(1.02) translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #444;
+  background-image: radial-gradient(rgba(230,220,200,0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  color: #fdfaf6; /* светлый текст, читаемый на темном паттерне */
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 1s cubic-bezier(0.4,0,0.2,1), opacity 1s ease-in-out;
+  margin-top: 1rem; /* уменьшили пустоту между последним блоком и футером */
+}
+
+.footer.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* --- Списки --- */
+ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}

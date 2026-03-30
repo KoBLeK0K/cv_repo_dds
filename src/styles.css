@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- Глобальные стили и фон с золотыми карпами --- */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  background: #f5f5f0; /* нейтральный базовый фон */
+  position: relative;
+}
+
+/* Фоновый слой с карпами кои */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/samurai.svg'); /* кладём svg в assets */
+  background-repeat: repeat;
+  background-size: 700px 900px;
+  opacity: 0.8;
+  z-index: -1;
+  pointer-events: none;
+  animation: koiFloat 80s linear infinite;
+}
+
+/* Лёгкая анимация движения карпов */
+@keyframes koiFloat {
+  0% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(30px, 20px) rotate(1deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+/* Ссылки и текст */
+a {
+  color: #b18643; /* золотой акцент */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}

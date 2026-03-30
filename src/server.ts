@@ -39,14 +39,24 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
+  const allowedHosts = ['localhost', '127.0.0.1', '192.168.1.15', '172.18.0.1'];
+
+  if (!allowedHosts.includes(req.hostname)) {
+    res.status(400).send('Bad Request: hostname not allowed');
+    return; // <- гарантируем завершение
+  }
+
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => {
+      if (response) {
+        writeResponseToNodeResponse(response, res);
+      } else {
+        next(); // <- обязательно вызываем next если нет ответа
+      }
+    })
     .catch(next);
 });
-
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
